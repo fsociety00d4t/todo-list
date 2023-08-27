@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Todo-List</title>
+</head>
+<body>
+    <div class="container">
+      <div class="title">
+        <h1>Todo-List</h1>
+      </div> 
+      <div class="nav">
+        <div class="list">
+            <ul class="perm">
+                <li><button class="home active" data-tab-target="#home">Home</button> <span>1</span></li>
+                <li><button class="today" data-tab-target="#today">Today</button> <span>2</span></li>
+                <li><button class="week" data-tab-target="#week">Week</button> <span>3</span></li>
+            </ul>
+            <h3>Projects</h3>
+            <ul class="projects">
+                <li><button>Study</button> <span>4</span></li>
+                <li><button>Work</button><span>5</span></li>
+            </ul>
+        </div>
+            <div class="new-project">
+                <h4><span><button class="new-project-btn">+</button></span>Add new project</h4>
+                <div class="new-project-input">
+                    <input class='input'type="text" id="input" name="input">
+                    <div>
+                        <button class="add-project">Add</button>
+                         <button class="cancel-project">Cancel</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="notes"><button>Notes</button></div>
+      </div> 
+      <div class="main">
+        <div id="home" class="active" data-tab-content>
+            <h2>Todo-List:</h2>
+        </div>
+        <div id="today" data-tab-content>
+            <h2>Today's Tasks:</h2>
+        </div>
+        <div id="week" data-tab-content>
+            <h2>Week's Tasks:</h2>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js">defer</script>
+</body>
+</html>
