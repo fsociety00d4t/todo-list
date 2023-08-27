@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding:0;
+}
+
+body {
+    background-color: green;
+}
+
+.container {
+    background-color: red;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:80%;
+    height: 80%;
+    display: grid;
+    grid-template-rows:  1fr 4fr;
+    grid-template-columns: 1fr 3fr;
+}
+
+.nav {
+    background-color:beige;
+    grid-column: 1;
+    padding: 5%;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 10%;
+}
+
+li {
+    margin-bottom: 3%;
+}
+
+.nav h3,h4{
+    background-color: pink;
+    margin-bottom: 5%;
+}
+
+li span {
+    background-color:coral;
+    border-radius:50%;
+    margin-left: 10%;
+    padding:0% 3%;
+}
+
+button {
+    all: unset;
+}
+
+button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.perm li button.active{
+    color:red;
+}
+
+.new-project button{
+    margin-right: 5%;
+    border-radius: 50%;
+    padding:2% 3%;
+    border:1px solid black;
+}
+
+.new-project-input {
+    width: 100%;
+    display:none;
+    flex-direction: column;
+    background-color:aqua;
+   
+}
+
+.new-project-input button {
+    margin:3% 0%;
+    padding: 3%;
+    border-radius: 5%;
+}
+
+.new-project-input div:nth-child(2){
+    background-color: purple;
+    display:flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap:5%;
+}
+
+.add-project {
+    background-color: green;
+}
+
+.cancel-project {
+    background-color: red;
+}
+
+.notes {
+    margin-top: 20%;
+}
+
+.main {
+    background-color: blue;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.main > * {
+    padding: 1%;
+}
+
+.hidden {
+    display:flex;  
+}
+
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display:block;
+}
+
