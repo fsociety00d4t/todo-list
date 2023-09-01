@@ -60,6 +60,10 @@ button:hover{
     color:red;
 }
 
+.dynamic-project.active {
+    color:red;
+}
+
 .new-project button{
     margin-right: 5%;
     border-radius: 50%;
@@ -106,14 +110,36 @@ button:hover{
     background-color: blue;
     color:white;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: column;  
     align-items: center;
+    align-content: center;
+    justify-items: center;
 }
 
-.main > * {
-    padding: 1%;
+.main > *{
+    width: 100%;
+    margin-bottom: 2%;
 }
+
+.main div > * {
+    padding:1% 0%;
+}
+
+
+.main button {
+    position: relative;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%);
+}
+
+.main h2 {
+    position: relative;
+    left: 50%;
+    top: 0%;
+   transform: translate(-5%);
+}
+
 
 .hidden {
     display:flex;  
@@ -126,4 +152,69 @@ button:hover{
 .active[data-tab-content] {
     display:block;
 }
+
+.new-todo-container {
+    width: 20%;
+    display:none;
+    flex-direction: column;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-10%, -40%);
+    background-color:pink;
+    padding: 5%;
+}
+
+
+.new-todo-container > * {
+    margin:2%;
+}
+
+.checkboxes > * {
+    color:red;
+}
+
+.new-todo-buttons {
+    display:flex;
+    justify-content: space-around;
+}
+
+.new-todo-buttons > * {
+    padding: 1% 5%;
+    border: 1px solid black;
+}
+
+.add-todo{
+    background-color: green;
+}
+
+.cancel-todo {
+    background-color: red;
+}
+
+.new-todo-container.active {
+    display:flex;
+}
+
+.todo-div {
+    align-self:flex-start;
+    background-color: purple;
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+   
+}
+
+.todo-div  {
+    width: 100%;
+    margin-bottom: 1%;  
+}
+
+.todo-div img {
+    width:3%;
+    height: 3%;
+    cursor: pointer;
+}
+
+
 

@@ -1,35 +1,85 @@
-const createToDo = ()  => {
-    function ToDo (title, description, dueDate, priority){
+import {displayTodaysTodos,displayWeeksTodos,displayTodo} from './displayDOM';
+
+let toDos=[];
+let todaytoDos=[];
+let weektoDos=[];
+
+function createToDo  (title, date, checkbox) {
+  
+    function ToDo (title, dueDate, priority){
         this.title = title;
-        this.description = description;
         this.dueDate = dueDate;
         this.priority=priority;
     }
 
     ToDo.prototype.display = function() {
-        console.log(`task is ${this.title}, description is ${this.description},
-        date is ${this.dueDate}, priority is ${this.priority}`);
+        console.log(`task is ${this.title}, date is ${this.dueDate}, priority is ${this.priority}`);
     }
 
-   /* ToDo.prototype.getToDo = function () {
-    } 
-    */
+    //const toDo = new ToDo('study','26','high');
 
+   // toDo.display();
+   
 
+    const newToDo = new ToDo(title,date,checkbox);
+    toDos.push(newToDo);
 
-    const toDo = new ToDo('study','math','26','high');
+   //toDos.forEach(e=> {
+     //   console.log(e);
+  //  })
 
-    toDo.display();
+    addToday (date,newToDo);
+    addWeek (date,newToDo);
 
-    function newTask () {
-        let task = prompt('enter task');
-        let tasks = task.split(',');
-        //console.log(tasks);
-
-        return new ToDo(tasks[0],tasks[1],tasks[2],tasks[3]);
-    }
-
-    newTask().display();
 }
 
-export default createToDo;
+function addToday(date,toDo) {
+
+    
+    let q = new Date();
+    let m = q.getMonth()+1;
+    let d = q.getDate();
+    let y = q.getFullYear();
+
+  //  console.log(q);
+
+    if (m<10){
+      //  console.log(typeof(m));
+        m = m.toString().padStart(2,'0');
+       // console.log(`m is ${m}`);
+    }
+
+    if (d<10){
+      //  console.log(typeof(m));
+        d = d.toString().padStart(2,'0');
+       // console.log(`m is ${m}`);
+    }
+
+    let today = `${y}-${m}-${d}`;
+   // console.log(today);
+    //console.log(`today is ${y} ${m} ${d}`);
+   // console.log(`the date is ${date}`);
+    //  console.log(today);
+   //   console.log(date);
+
+    if (today===date) {
+      //  console.log('same');
+     // console.log('here');
+        todaytoDos.push(toDo)
+       displayTodaysTodos(toDo);
+     //  return true;
+    }
+}
+
+function addWeek (date,toDo) {
+    let myDate = new Date (date);
+    let now = new Date();
+    let inAWeek = new Date();
+    inAWeek.setDate(inAWeek.getDate()+ 1 * 7);
+   if (myDate>=now && myDate<=inAWeek) {
+        weektoDos.push(toDo);
+        displayWeeksTodos(toDo);
+   }
+}
+
+export  {createToDo,addToday,addWeek};
