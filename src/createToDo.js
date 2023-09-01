@@ -1,8 +1,10 @@
-import {displayTodaysTodos,displayWeeksTodos,displayTodo} from './displayDOM';
+import {displayTodaysTodos,displayWeeksTodos,displayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter} from './displayDOM';
 
 let toDos=[];
 let todaytoDos=[];
 let weektoDos=[];
+let n=1;
+let id=1;
 
 function createToDo  (title, date, checkbox) {
   
@@ -10,6 +12,7 @@ function createToDo  (title, date, checkbox) {
         this.title = title;
         this.dueDate = dueDate;
         this.priority=priority;
+        this.id = id++;
     }
 
     ToDo.prototype.display = function() {
@@ -28,6 +31,8 @@ function createToDo  (title, date, checkbox) {
      //   console.log(e);
   //  })
 
+    AddHomeCounter(toDos.length);
+
     addToday (date,newToDo);
     addWeek (date,newToDo);
 
@@ -41,34 +46,21 @@ function addToday(date,toDo) {
     let d = q.getDate();
     let y = q.getFullYear();
 
-  //  console.log(q);
-
     if (m<10){
-      //  console.log(typeof(m));
         m = m.toString().padStart(2,'0');
-       // console.log(`m is ${m}`);
     }
 
     if (d<10){
-      //  console.log(typeof(m));
         d = d.toString().padStart(2,'0');
-       // console.log(`m is ${m}`);
     }
 
     let today = `${y}-${m}-${d}`;
-   // console.log(today);
-    //console.log(`today is ${y} ${m} ${d}`);
-   // console.log(`the date is ${date}`);
-    //  console.log(today);
-   //   console.log(date);
-
     if (today===date) {
-      //  console.log('same');
-     // console.log('here');
         todaytoDos.push(toDo)
        displayTodaysTodos(toDo);
-     //  return true;
     }
+
+    addTodayCounter(todaytoDos.length);
 }
 
 function addWeek (date,toDo) {
@@ -80,6 +72,31 @@ function addWeek (date,toDo) {
         weektoDos.push(toDo);
         displayWeeksTodos(toDo);
    }
+
+   addWeekCounter(weektoDos.length);
 }
 
-export  {createToDo,addToday,addWeek};
+function removeTodo (target) {
+  toDos.forEach((e,i)=> {
+    if (target==e.id)
+      toDos.splice(i,1); 
+      removeHomeCounter(toDos.length);
+  })
+
+
+  todaytoDos.forEach((e,i)=> {
+    if (target==e.id)
+      todaytoDos.splice(i,1);
+      removeTodayCounter(todaytoDos.length);
+  })
+
+  weektoDos.forEach((e,i)=> {
+    if (target==e.id)
+      weektoDos.splice(i,1);
+      removeWeekCounter(weektoDos.length);
+    
+  })
+}
+
+
+export  {createToDo,addToday,addWeek,removeTodo};

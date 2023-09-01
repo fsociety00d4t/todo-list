@@ -1,5 +1,5 @@
 //console.log("HI");
-import createToDo from './createToDo';
+import {createToDo,removeTodo} from './createToDo';
 import createProject from './createProject';
 import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo} from './displayDOM';
 
@@ -95,7 +95,7 @@ document.addEventListener('click',function(e){
     if (target) {
         let id = target.parentElement.id;
         deleteDisplayTodo(target,id);
-        removeTodo();
+        removeTodo(target.parentElement.id);
     }
 })
 

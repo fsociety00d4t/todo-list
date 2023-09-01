@@ -2,6 +2,7 @@ import {createToDo} from './createToDo';
 import createProject from './createProject';
 let title = [];
 let divCounter=0;
+
 const displayInput = () => {
     const inputDiv = document.querySelector('.new-project-input');
     inputDiv.classList.add('hidden');
@@ -137,6 +138,8 @@ const addNewTodo = () => {
         newTodoDiv.style.backgroundColor='white';
 
         createToDo(title.value,date.value,checkedCheckbox); 
+
+        
  }
 
  const displayTodaysTodos = (toDo) => {
@@ -266,7 +269,57 @@ const addNewTodo = () => {
     }) 
  }
 
+ //handle the counters
+ /* function changeCounter(length) {
+    const Counter = document.querySelectorAll('.number-of-todo');
+    const pages = document.querySelectorAll('[data-tab-target]');
+    Counter.forEach(e=> {
+        pages.forEach(el=>{
+            e.innerHTML=length;
+        })
+    }) */
 
 
-export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo};
+    function AddHomeCounter (length) {
+        const counter = document.getElementById('home');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[0].innerHTML=length;
+    }
+
+    function addTodayCounter (length) {
+        const counter = document.getElementById('today');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[1].innerHTML=length;
+    }
+
+    function addWeekCounter (length) {
+        const counter = document.getElementById('week');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[2].innerHTML=length;
+    }
+
+    function removeHomeCounter (length) {
+        const counter = document.getElementById('home');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[0].innerHTML=length;
+    }
+
+    function removeTodayCounter(length) {
+        const counter = document.getElementById('today');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[1].innerHTML=length;
+    }
+
+    function removeWeekCounter(length) {
+        const counter = document.getElementById('week');
+        const page = document.querySelectorAll('.number-of-todo');
+        page[2].innerHTML=length;
+    }
+ 
+
+ 
+
+
+
+export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter};
 
