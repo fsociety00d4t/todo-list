@@ -39,8 +39,10 @@
             <div class="notes"><button>Notes</button></div>
       </div> 
       <div class="main">
+        
         <div id="home" class="active" data-tab-content>
             <h2>Todo-List:</h2>
+            <button class="new-todo">+ Add new</button>
         </div>
         <div id="today" data-tab-content>
             <h2>Today's Tasks:</h2>
@@ -49,6 +51,25 @@
             <h2>Week's Tasks:</h2>
         </div>
       </div>
+    </div>
+    <div class="new-todo-container">
+        <label for="title">Title*</label>
+        <input type="text" id="title" name="title" min="1">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date">
+        <div class="checkboxes">
+            <label for="low-priority">low-priority</label>
+        <input type="radio" id="low-priority" name="priority" class="priority">
+        <label for="medium-priority">medium-priority</label>
+        <input type="radio" id="medium-priority" name="priority" class="priority">
+        <label for="high-priority">high-priority</label>
+        <input type="radio" id="high-priority" name="priority" class="priority">
+        </div>
+        <div class="new-todo-buttons">
+            <button class="add-todo">Add</button>
+        <button class="cancel-todo">Cancel</button>
+        </div>
+        
     </div>
     <script src="./main.js">defer</script>
 </body>
