@@ -1,7 +1,7 @@
 //console.log("HI");
 import {createToDo,removeTodo} from './createToDo';
 import createProject from './createProject';
-import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo,createProjectContent,addContent} from './displayDOM';
+import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo,createProjectContent,addContent,displayProjectTodos} from './displayDOM';
 
 //createProject();
 //createToDo();
@@ -104,5 +104,23 @@ document.addEventListener('click',function(e){
         removeTodo(target.parentElement.id);
     }
 })
+
+//handle new Todo on dynamic projects
+window.document.addEventListener('click',function(e){
+  const target = e.target.closest('.add-new-project-todo');
+  if (target) {
+     displayTodoContainer();
+    //find active page
+  /*  const activeProject = window.document.querySelectorAll('.dynamic-project');
+    const activePage = window.document.querySelectorAll('.project-divs');
+    activePage.forEach((e,i)=> {
+      if (e.classList.contains('active'))
+      {
+        console.log(e.id);
+        displayProjectTodos(e.id);
+      }
+    }) */
+  }
+}) 
 
 

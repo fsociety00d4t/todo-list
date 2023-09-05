@@ -1,8 +1,9 @@
-import {displayTodaysTodos,displayWeeksTodos,displayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter} from './displayDOM';
+import {displayTodaysTodos,displayWeeksTodos,displayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,displayProjectTodos} from './displayDOM';
 
 let toDos=[];
 let todaytoDos=[];
 let weektoDos=[];
+let projecttoDos=[];
 let n=1;
 let id=1;
 
@@ -35,6 +36,18 @@ function createToDo  (title, date, checkbox) {
 
     addToday (date,newToDo);
     addWeek (date,newToDo);
+
+    //////////////////////////
+    const activePage = window.document.querySelectorAll('.project-divs');
+    activePage.forEach((e,i)=> {
+      if (e.classList.contains('active'))
+      {
+       // console.log(e.id);
+        projecttoDos.push(newToDo);
+        displayProjectTodos(e.id, newToDo);
+      }
+    })
+  
 
 }
 

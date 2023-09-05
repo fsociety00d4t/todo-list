@@ -30,6 +30,7 @@ const displayProjects = () => {
     const title = document.createElement('h2');
     title.innerHTML = projectName.value + ' List:'
     const button = document.createElement('button');
+    button.classList.add('add-new-project-todo');
     button.innerHTML = '+ Add new ';
     div.appendChild(title);
     div.appendChild(button);
@@ -66,45 +67,7 @@ function addHeaderProjectPage () {
 }
 
 function addContent () {
- /*   const projects = window.document.querySelectorAll('.dynamic-project');
-    const divs = window.document.querySelectorAll('.project-divs');
-    divs.forEach((e,i)=> {
-        e.id=test++;
-    })
-    
-    console.log(divs);
-    projects.forEach((e,i)=> {
-        if (e.classList.contains('active')) {
-            console.log(e);
-            console.log(i);
-            e.dataset.tabTarget = test;
-        }
-    })
-
-    divs.forEach((e,i)=> {
-        
-        let p = document.createElement('p');
-        p.innerHTML='KKKK';
-        e.appendChild(p);
-        p.id = test[i];
-        console.log('BROO');
-    })
-  /*  const mainDiv = document.querySelector('.main');
-    const projectDiv = document.createElement('div');
-    projectDiv.dataset.tabContent='';
-    let y = test++;
-    let x = y.toString();
-   // projectDiv.id=x;
-    projectDiv.id='x';
-    projectDiv.classList.add('project-divs')
-    console.log('id is' +projectDiv.id);
-    const title = document.createElement('h2');
-    const addNew = document.createElement('button');
-    title.innerHTML = 'Todo-List: ';
-    addNew.innerHTML = '+ Add new ';
-    projectDiv.appendChild(title);
-    projectDiv.appendChild(addNew);
-    mainDiv.appendChild(projectDiv); */
+ 
     
 }
 
@@ -392,6 +355,45 @@ const addNewTodo = () => {
         const page = document.querySelectorAll('.number-of-todo');
         page[2].innerHTML=length;
     }
+
+    function displayProjectTodos (page,toDo) {
+        const checkbox = document.createElement('input');
+        checkbox.type='checkbox';
+        checkbox.classList.add('checkbox');
+        const newTodoDiv = document.createElement('div');
+        newTodoDiv.classList.add('todo-div');
+        newTodoDiv.id=divCounter;
+        const toDotitle = document.createElement('p');
+        const toDoDate = document.createElement('p');
+        const deleteTodo = document.createElement('img');
+        deleteTodo.classList.add('delete');
+        toDotitle.innerHTML = toDo.title;
+        toDoDate.innerHTML = toDo.value;
+        deleteTodo.src='../images/trash-outline.svg'
+        newTodoDiv.appendChild(checkbox);
+        newTodoDiv.appendChild(toDotitle);
+        newTodoDiv.appendChild(toDoDate);
+        newTodoDiv.appendChild(deleteTodo);
+        //get all divs
+        const pages = window.document.querySelectorAll('.project-divs');
+        pages.forEach(e=> {
+            if (e.id==page)
+            e.appendChild(newTodoDiv);
+        })
+        
+
+        // handle priority color
+        //   console.log(toDo.priority);
+        if (toDo.priority==='high-priority')
+            newTodoDiv.style.backgroundColor= 'red';
+        else if (toDo.priority==='medium-priority')
+            newTodoDiv.style.backgroundColor='orange';
+        else if (toDo.priority==='low-priority')
+            newTodoDiv.style.backgroundColor='green';
+        else
+            newTodoDiv.style.backgroundColor='white';
+
+    }
  
 
  
@@ -400,4 +402,5 @@ const addNewTodo = () => {
 
 export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,
     displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
-    addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,createProjectContent,addContent};
+    addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,createProjectContent,
+    addContent,displayProjectTodos};
