@@ -1,7 +1,7 @@
 //console.log("HI");
 import {createToDo,removeTodo} from './createToDo';
 import createProject from './createProject';
-import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo} from './displayDOM';
+import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo,createProjectContent,addContent} from './displayDOM';
 
 //createProject();
 //createToDo();
@@ -40,8 +40,13 @@ document.addEventListener('click',function(e){
     const target = e.target.closest('.dynamic-project');
     const createdProjects = document.querySelectorAll('[data-tab-target]');
     const createProjectsContent = document.querySelectorAll('[data-tab-content]');
+  //  const createProjectsContent = document.querySelectorAll('.dynamic-project');
     if (target){
-        displayProjectsContent();
+       // displayProjectsContent();
+      // createProjectContent (target);
+     // addContent ();
+      //  createProjectContent ();
+      
         const targetContent = document.querySelector(target.dataset.tabTarget);
 
         createProjectsContent.forEach(e=>e.classList.remove('active'));
@@ -52,6 +57,7 @@ document.addEventListener('click',function(e){
        })
         targetContent.classList.add('active');
         target.classList.add('active');
+        addContent();
     }
     
 })
@@ -98,6 +104,5 @@ document.addEventListener('click',function(e){
         removeTodo(target.parentElement.id);
     }
 })
-
 
 

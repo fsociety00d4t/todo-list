@@ -2,6 +2,8 @@ import {createToDo} from './createToDo';
 import createProject from './createProject';
 let title = [];
 let divCounter=0;
+let rng=0;
+let cnt=0;
 
 const displayInput = () => {
     const inputDiv = document.querySelector('.new-project-input');
@@ -18,16 +20,23 @@ const displayInput = () => {
 }
 
 const displayProjects = () => {
-
-   // const inputDiv = document.querySelector('.new-project-input');
-   // inputDiv.classList.add('hidden');
-    
     const projectName = document.getElementById('input');
-   // const add = document.querySelector('.add-project');
-   // add.addEventListener('click',function() {
-      //  console.log(projectName.value);
-        //create new project display
-       let x = createProject(projectName.value);
+
+        //ADD CONTENT
+    const div = document.createElement('div');
+    div.classList.add('project-divs');
+    div.dataset.tabContent='';
+    div.id = `project${cnt}`;
+    const title = document.createElement('h2');
+    title.innerHTML = projectName.value + ' List:'
+    const button = document.createElement('button');
+    button.innerHTML = '+ Add new ';
+    div.appendChild(title);
+    div.appendChild(button);
+    const main = document.querySelector('.main');
+    main.appendChild(div);
+   
+    let x = createProject(projectName.value);
     const list = document.querySelector('.projects');
     const display = document.createElement('li');
     const displayBtn = document.createElement('button');
@@ -35,25 +44,93 @@ const displayProjects = () => {
     span.innerHTML='6';
     displayBtn.innerHTML = projectName.value;
     displayBtn.classList.add('dynamic-project');
-    displayBtn.dataset.tabTarget = '#hello';
+   // displayBtn.dataset.tabTarget = '#' + test;
+  //displayBtn.setAttribute('href', test);
+  //  displayBtn.href= x;
+ //   displayBtn.dataset.tabTarget = '#x';
+   // displayBtn.dataset.tabTarget=x;
+    displayBtn.dataset.tabTarget= `#project${cnt}`;
     display.appendChild(displayBtn);
     display.appendChild(span);
     list.appendChild(display);
    // })
     //add the project to array
-  // title.push(projectName.value);
+  // title.push(projectName.value); 
+
+  cnt++;
+ 
+}
+
+function addHeaderProjectPage () {
+    
+}
+
+function addContent () {
+ /*   const projects = window.document.querySelectorAll('.dynamic-project');
+    const divs = window.document.querySelectorAll('.project-divs');
+    divs.forEach((e,i)=> {
+        e.id=test++;
+    })
+    
+    console.log(divs);
+    projects.forEach((e,i)=> {
+        if (e.classList.contains('active')) {
+            console.log(e);
+            console.log(i);
+            e.dataset.tabTarget = test;
+        }
+    })
+
+    divs.forEach((e,i)=> {
+        
+        let p = document.createElement('p');
+        p.innerHTML='KKKK';
+        e.appendChild(p);
+        p.id = test[i];
+        console.log('BROO');
+    })
+  /*  const mainDiv = document.querySelector('.main');
+    const projectDiv = document.createElement('div');
+    projectDiv.dataset.tabContent='';
+    let y = test++;
+    let x = y.toString();
+   // projectDiv.id=x;
+    projectDiv.id='x';
+    projectDiv.classList.add('project-divs')
+    console.log('id is' +projectDiv.id);
+    const title = document.createElement('h2');
+    const addNew = document.createElement('button');
+    title.innerHTML = 'Todo-List: ';
+    addNew.innerHTML = '+ Add new ';
+    projectDiv.appendChild(title);
+    projectDiv.appendChild(addNew);
+    mainDiv.appendChild(projectDiv); */
+    
+}
+
+function createProjectContent () {
+    const projects = window.document.querySelectorAll('.dynamic-project');
+    const divs = window.document.querySelectorAll('.project-divs');
    
 
 }
 
+
+
 //create new project page
 const displayProjectsContent = () => {
-    const mainDiv = document.querySelector('.main');
-    let test = document.createElement('p');
-    test.innerHTML = 'OK';
-    test.id='hello';
-    test.dataset.tabContent='';
-    mainDiv.appendChild(test);
+  //  test++;
+  /*  const mainDiv = document.querySelector('.main');
+    const projectDiv = document.createElement('div');
+    const title = document.createElement('h2');
+    const addNew = document.createElement('button');
+
+    title.innerHTML = 'Todo-List: ';
+    addNew.innerHTML = '+ Add new ';
+    projectDiv.appendChild(title);
+    projectDiv.appendChild(addNew);
+    mainDiv.appendChild(projectDiv); */
+
 }
 
 const displayTodoContainer = () => {
@@ -127,7 +204,7 @@ const addNewTodo = () => {
     home.appendChild(newTodoDiv);
 
     // handle priority color
-    console.log(checkedCheckbox);
+   // console.log(checkedCheckbox);
     if (checkedCheckbox==='high-priority')
         newTodoDiv.style.backgroundColor= 'red';
     else if (checkedCheckbox==='medium-priority')
@@ -164,7 +241,7 @@ const addNewTodo = () => {
     today.appendChild(newTodoDiv);
 
        // handle priority color
-    console.log(toDo.priority);
+   // console.log(toDo.priority);
     if (toDo.priority==='high-priority')
         newTodoDiv.style.backgroundColor= 'red';
     else if (toDo.priority==='medium-priority')
@@ -198,7 +275,7 @@ const addNewTodo = () => {
     week.appendChild(newTodoDiv);
 
        // handle priority color
-       console.log(toDo.priority);
+    //   console.log(toDo.priority);
        if (toDo.priority==='high-priority')
            newTodoDiv.style.backgroundColor= 'red';
        else if (toDo.priority==='medium-priority')
@@ -235,7 +312,7 @@ const addNewTodo = () => {
  }
 
  function deleteDisplayTodo (target,id) {
-    console.log(target);
+   // console.log(target);
     const Divs = document.querySelectorAll('.todo-div');
     const home = document.getElementById('home');
     const today = document.getElementById('today');
@@ -321,5 +398,6 @@ const addNewTodo = () => {
 
 
 
-export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter};
-
+export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,
+    displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
+    addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,createProjectContent,addContent};
