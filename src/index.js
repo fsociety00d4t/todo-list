@@ -1,6 +1,6 @@
 //console.log("HI");
 import {createToDo,removeTodo} from './createToDo';
-import createProject from './createProject';
+import {createProject} from './createProject';
 import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo,createProjectContent,addContent,displayProjectTodos} from './displayDOM';
 
 //createProject();
@@ -18,6 +18,7 @@ newProject.addEventListener('click',function(){
 
 //handle Tabs
 const tabs = document.querySelectorAll('[data-tab-target]');
+//const projects = window.document.querySelectorAll('.dynamic-project');
 //const tabContent = document.querySelectorAll('[data-tab-content]');
 
 tabs.forEach(tab => {
@@ -28,6 +29,7 @@ tabs.forEach(tab => {
 
         tabs.forEach(tab => {
             tab.classList.remove('active');
+          //  projects.classList.remove('active');
         })
         tab.classList.add('active');
         target.classList.add('active');
@@ -99,9 +101,12 @@ document.addEventListener('click',function(e){
 document.addEventListener('click',function(e){
     const target = e.target.closest('.delete');
     if (target) {
+        console.log(`from index target is ${target.parentElement.id}`);
         let id = target.parentElement.id;
         deleteDisplayTodo(target,id);
+        console.log(`after remove from index target is ${target.parentElement.id}`);
         removeTodo(target.parentElement.id);
+        
     }
 })
 

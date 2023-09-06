@@ -1,5 +1,7 @@
-import {displayTodaysTodos,displayWeeksTodos,displayTodo,AddHomeCounter,addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,displayProjectTodos} from './displayDOM';
-
+import {displayTodaysTodos,displayWeeksTodos,displayTodo,AddHomeCounter,
+  addTodayCounter,addWeekCounter,removeHomeCounter,removeTodayCounter,
+  removeWeekCounter,displayProjectTodos,addProjectCounter,removeProjectCounter} from './displayDOM';
+import {addTodos,getProjects,removeTodoFromProject} from './createProject';
 let toDos=[];
 let todaytoDos=[];
 let weektoDos=[];
@@ -43,11 +45,16 @@ function createToDo  (title, date, checkbox) {
       if (e.classList.contains('active'))
       {
        // console.log(e.id);
-        projecttoDos.push(newToDo);
+       // projecttoDos.push(newToDo);
+       let x =  addTodos (e.id,newToDo);
+       // addProjectCounter(x);
         displayProjectTodos(e.id, newToDo);
+     //   console.log(`x is ${x}`);
+        addProjectCounter(e.id.toString().charAt(e.id.length-1), x);
       }
     })
-  
+    
+   // console.log(projecttoDos);
 
 }
 
@@ -109,6 +116,18 @@ function removeTodo (target) {
       removeWeekCounter(weektoDos.length);
     
   })
+
+  removeTodoFromProject(target);
+
+ /* console.log(`from createTodo target is ${target}`);
+  let x = getProjects(target);
+  console.log(x);
+  x.forEach((e,i)=> {
+    console.log(`target is ${target} and e.id is ${e.id}`);
+    if (target===e.id) 
+    e.splice(i,1);
+    removeProjectCounter(e.length);
+  }) */
 }
 
 

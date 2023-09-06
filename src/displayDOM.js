@@ -1,5 +1,5 @@
 import {createToDo} from './createToDo';
-import createProject from './createProject';
+import {createProject} from './createProject';
 let title = [];
 let divCounter=0;
 let rng=0;
@@ -42,7 +42,8 @@ const displayProjects = () => {
     const display = document.createElement('li');
     const displayBtn = document.createElement('button');
     const span = document.createElement('span');
-    span.innerHTML='6';
+    span.classList.add('project-span');
+    span.innerHTML='0';
     displayBtn.innerHTML = projectName.value;
     displayBtn.classList.add('dynamic-project');
    // displayBtn.dataset.tabTarget = '#' + test;
@@ -309,16 +310,6 @@ const addNewTodo = () => {
     }) 
  }
 
- //handle the counters
- /* function changeCounter(length) {
-    const Counter = document.querySelectorAll('.number-of-todo');
-    const pages = document.querySelectorAll('[data-tab-target]');
-    Counter.forEach(e=> {
-        pages.forEach(el=>{
-            e.innerHTML=length;
-        })
-    }) */
-
 
     function AddHomeCounter (length) {
         const counter = document.getElementById('home');
@@ -354,6 +345,31 @@ const addNewTodo = () => {
         const counter = document.getElementById('week');
         const page = document.querySelectorAll('.number-of-todo');
         page[2].innerHTML=length;
+    }
+
+    function addProjectCounter(div,length) {
+      //  console.log('WORKS HERE');
+        const counter = window.document.querySelectorAll('.project-span');
+      //  console.log(counter);
+        counter.forEach((e,i)=> {
+           // console.log(`e is ${e}`);
+        //   console.log(`i is ${i} and div is ${div}`);
+         //  console.log(typeof(i), typeof(div));
+            if (i==div) {
+           //     console.log('xaxa');
+                e.innerHTML=length;
+            }
+        })
+    }
+
+    function removeProjectCounter (project, length) {
+        const counter = window.document.querySelectorAll('.project-span');
+        counter.forEach((e,i)=> {
+            if (project==i) 
+            {
+                e.innerHTML=length;
+            }
+        })
     }
 
     function displayProjectTodos (page,toDo) {
@@ -403,4 +419,4 @@ const addNewTodo = () => {
 export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,
     displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
     addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,createProjectContent,
-    addContent,displayProjectTodos};
+    addContent,displayProjectTodos,addProjectCounter,removeProjectCounter};
