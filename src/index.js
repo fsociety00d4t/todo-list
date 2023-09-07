@@ -1,25 +1,14 @@
-//console.log("HI");
-import {createToDo,removeTodo} from './createToDo';
-import {createProject} from './createProject';
-import {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo,createProjectContent,addContent,displayProjectTodos} from './displayDOM';
+import {removeTodo} from './createToDo';
+import {displayInput,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo} from './displayDOM';
 
-//createProject();
-//createToDo();
 let activePage;
 const newProject = document.querySelector('.new-project-btn');
 newProject.addEventListener('click',function(){
-  //  const projectName = document.getElementById('input');
-  //  createProject(projectName.value);
-  //  displayProjects();
-   // console.log('it is ' +createProject.projects);
    displayInput();
-  // console.log(projectsArray);
 })
 
 //handle Tabs
 const tabs = document.querySelectorAll('[data-tab-target]');
-//const projects = window.document.querySelectorAll('.dynamic-project');
-//const tabContent = document.querySelectorAll('[data-tab-content]');
 
 tabs.forEach(tab => {
     tab.addEventListener('click',()=> {
@@ -30,7 +19,6 @@ tabs.forEach(tab => {
 
         allTabs.forEach(tab => {
             tab.classList.remove('active');
-        //    projects.classList.remove('active');
         })
         tab.classList.add('active');
         target.classList.add('active');
@@ -43,24 +31,16 @@ tabs.forEach(tab => {
     const target = e.target.closest('.dynamic-project');
     const createdProjects = document.querySelectorAll('[data-tab-target]');
     const createProjectsContent = document.querySelectorAll('[data-tab-content]');
-  //  const createProjectsContent = document.querySelectorAll('.dynamic-project');
     if (target){
-       // displayProjectsContent();
-      // createProjectContent (target);
-     // addContent ();
-      //  createProjectContent ();
-      
         const targetContent = document.querySelector(target.dataset.tabTarget);
 
         createProjectsContent.forEach(e=>e.classList.remove('active'));
 
-     //  console.log(target);
        createdProjects.forEach(tab=>{
         tab.classList.remove('active');
        })
         targetContent.classList.add('active');
         target.classList.add('active');
-        addContent();
     }
     
 }) 
@@ -69,8 +49,6 @@ tabs.forEach(tab => {
 const ToDo = document.querySelector('.new-todo');
 ToDo.addEventListener('click',function(){
     displayTodoContainer();
-   // console.log('x is' + x);
-   // createToDo();
 })
 
 
@@ -82,16 +60,16 @@ document.addEventListener('click',function(e){
     if (target) {
 
         
-        if (target.checked===false) {  //works opposite. why? DOn't fking know...
+        if (target.checked===false) {  //works opposite.
             console.log(target.checked===false);
             let id = target.parentElement.id;
-            displayBack(target,id);
+            displayBack(id);
         }
 
       else {
         let id = target.parentElement.id;
         console.log('value is ' + target.value);
-        displayDone(target,id);
+        displayDone(id);
       }
 
     }
@@ -115,16 +93,6 @@ window.document.addEventListener('click',function(e){
   const target = e.target.closest('.add-new-project-todo');
   if (target) {
      displayTodoContainer();
-    //find active page
-  /*  const activeProject = window.document.querySelectorAll('.dynamic-project');
-    const activePage = window.document.querySelectorAll('.project-divs');
-    activePage.forEach((e,i)=> {
-      if (e.classList.contains('active'))
-      {
-        console.log(e.id);
-        displayProjectTodos(e.id);
-      }
-    }) */
   }
 }) 
 

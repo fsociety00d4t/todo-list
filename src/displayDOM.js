@@ -2,13 +2,11 @@ import {createToDo} from './createToDo';
 import {createProject} from './createProject';
 let title = [];
 let divCounter=0;
-let rng=0;
 let cnt=0;
 
 const displayInput = () => {
     const inputDiv = document.querySelector('.new-project-input');
     inputDiv.classList.add('hidden');
-  //  const projectName = document.getElementById('input');
     const add = document.querySelector('.add-project');
     add.addEventListener('click',displayProjects);
 
@@ -46,55 +44,13 @@ const displayProjects = () => {
     span.innerHTML='0';
     displayBtn.innerHTML = projectName.value;
     displayBtn.classList.add('dynamic-project');
-   // displayBtn.dataset.tabTarget = '#' + test;
-  //displayBtn.setAttribute('href', test);
-  //  displayBtn.href= x;
- //   displayBtn.dataset.tabTarget = '#x';
-   // displayBtn.dataset.tabTarget=x;
     displayBtn.dataset.tabTarget= `#project${cnt}`;
     display.appendChild(displayBtn);
     display.appendChild(span);
     list.appendChild(display);
-   // })
-    //add the project to array
-  // title.push(projectName.value); 
-
+ 
   cnt++;
  
-}
-
-function addHeaderProjectPage () {
-    
-}
-
-function addContent () {
- 
-    
-}
-
-function createProjectContent () {
-    const projects = window.document.querySelectorAll('.dynamic-project');
-    const divs = window.document.querySelectorAll('.project-divs');
-   
-
-}
-
-
-
-//create new project page
-const displayProjectsContent = () => {
-  //  test++;
-  /*  const mainDiv = document.querySelector('.main');
-    const projectDiv = document.createElement('div');
-    const title = document.createElement('h2');
-    const addNew = document.createElement('button');
-
-    title.innerHTML = 'Todo-List: ';
-    addNew.innerHTML = '+ Add new ';
-    projectDiv.appendChild(title);
-    projectDiv.appendChild(addNew);
-    mainDiv.appendChild(projectDiv); */
-
 }
 
 const displayTodoContainer = () => {
@@ -128,23 +84,17 @@ const addNewTodo = () => {
     const title = document.getElementById('title');
     const date = document.getElementById('date');
     const checkboxes = document.querySelectorAll('.priority');
-  //  console.log(title.value);
- //   console.log(date.value);
     checkboxes.forEach(checkbox => {
         if(checkbox.checked) {
             checkedCheckbox = checkbox.id;
-           // console.log(checkbox.id);
         }
     })
     if (title.value!='')
     displayTodo(title,date,checkedCheckbox);
-    //return title,date,checkedCheckbox;
     
  }
 
  const displayTodo = (title,date,checkedCheckbox) => {
-
-   // createToDo(title.value,date.value,checkedCheckbox); 
 
     const home = document.getElementById('home');
     const checkbox = document.createElement('input');
@@ -167,20 +117,9 @@ const addNewTodo = () => {
     newTodoDiv.appendChild(deleteTodo);
     home.appendChild(newTodoDiv);
 
-    // handle priority color
-   // console.log(checkedCheckbox);
-    if (checkedCheckbox==='high-priority')
-        newTodoDiv.style.backgroundColor= 'red';
-    else if (checkedCheckbox==='medium-priority')
-        newTodoDiv.style.backgroundColor='orange';
-    else if (checkedCheckbox==='low-priority')
-        newTodoDiv.style.backgroundColor='green';
-    else
-        newTodoDiv.style.backgroundColor='white';
+        getColor(checkedCheckbox, newTodoDiv);
 
-        createToDo(title.value,date.value,checkedCheckbox); 
-
-        
+        createToDo(title.value,date.value,checkedCheckbox);      
  }
 
  const displayTodaysTodos = (toDo) => {
@@ -204,16 +143,7 @@ const addNewTodo = () => {
     newTodoDiv.appendChild(deleteTodo);
     today.appendChild(newTodoDiv);
 
-       // handle priority color
-   // console.log(toDo.priority);
-    if (toDo.priority==='high-priority')
-        newTodoDiv.style.backgroundColor= 'red';
-    else if (toDo.priority==='medium-priority')
-        newTodoDiv.style.backgroundColor='orange';
-    else if (toDo.priority==='low-priority')
-        newTodoDiv.style.backgroundColor='green';
-    else
-        newTodoDiv.style.backgroundColor='white';
+     getColor(toDo.priority, newTodoDiv);
 
  }
 
@@ -238,21 +168,11 @@ const addNewTodo = () => {
     newTodoDiv.appendChild(deleteTodo);
     week.appendChild(newTodoDiv);
 
-       // handle priority color
-    //   console.log(toDo.priority);
-       if (toDo.priority==='high-priority')
-           newTodoDiv.style.backgroundColor= 'red';
-       else if (toDo.priority==='medium-priority')
-           newTodoDiv.style.backgroundColor='orange';
-       else if (toDo.priority==='low-priority')
-           newTodoDiv.style.backgroundColor='green';
-       else
-           newTodoDiv.style.backgroundColor='white';
+     getColor(toDo.priority, newTodoDiv);
  }
 
- function displayDone(target,id) {
+ function displayDone(id) {
     const Divs = document.querySelectorAll('.todo-div');
-    const checkboxes = document.querySelectorAll('.checkbox');
     Divs.forEach(e=> {
       if (e.id===id) {
         e.style.textDecoration='line-through';
@@ -263,7 +183,7 @@ const addNewTodo = () => {
     
  }
 
- function displayBack (target,id) {
+ function displayBack (id) {
     const Divs = document.querySelectorAll('.todo-div');
     Divs.forEach(e=> {
         if (e.id===id) {
@@ -276,27 +196,8 @@ const addNewTodo = () => {
  }
 
  function deleteDisplayTodo (target,id) {
-   // console.log(target);
     const Divs = document.querySelectorAll('.todo-div');
-    const home = document.getElementById('home');
-    const today = document.getElementById('today');
-    const week = document.getElementById('week');
     const active = document.querySelectorAll('[data-tab-content]');
-    const inProject = window.document.querySelectorAll('.dynamic-project')
-
-   /* //No need for this code anymore, below loop fixes it!
-    //being able to remove from every page
-    active.forEach(el=> {
-        if(el.classList.contains('active')) {
-            Divs.forEach(e=> {
-                if(e.contains(target))
-                {
-                    el.removeChild(e);
-                }
-                
-            })
-        }
-    }) */
 
     //remove from every page the element
     Divs.forEach(e=> {
@@ -346,15 +247,9 @@ const addNewTodo = () => {
     }
 
     function addProjectCounter(div,length) {
-      //  console.log('WORKS HERE');
         const counter = window.document.querySelectorAll('.project-span');
-      //  console.log(counter);
         counter.forEach((e,i)=> {
-           // console.log(`e is ${e}`);
-        //   console.log(`i is ${i} and div is ${div}`);
-         //  console.log(typeof(i), typeof(div));
             if (i==div) {
-           //     console.log('xaxa');
                 e.innerHTML=length;
             }
         })
@@ -362,7 +257,6 @@ const addNewTodo = () => {
 
     function removeProjectCounter (project, length) {
         const counter = window.document.querySelectorAll('.project-span');
-      //  console.log(`project is ${project}`);
         counter.forEach((e,i)=> {
             if (project==i) 
             {
@@ -396,26 +290,25 @@ const addNewTodo = () => {
             e.appendChild(newTodoDiv);
         })
         
-
-        // handle priority color
-        //   console.log(toDo.priority);
-        if (toDo.priority==='high-priority')
-            newTodoDiv.style.backgroundColor= 'red';
-        else if (toDo.priority==='medium-priority')
-            newTodoDiv.style.backgroundColor='orange';
-        else if (toDo.priority==='low-priority')
-            newTodoDiv.style.backgroundColor='green';
-        else
-            newTodoDiv.style.backgroundColor='white';
-
+        getColor(toDo.priority, newTodoDiv);
+    }
+ 
+    //handle priority color 
+    function getColor (prio,div) {
+            if (prio==='high-priority')
+            div.style.backgroundColor= 'red';
+            else if (prio==='medium-priority')
+            div.style.backgroundColor='orange';
+            else if (prio==='low-priority')
+            div.style.backgroundColor='green';
+            else
+            div.style.backgroundColor='white';
     }
  
 
- 
 
 
-
-export {displayInput,displayProjects,displayProjectsContent,displayTodoContainer,
+export {displayInput,displayProjects,displayTodoContainer,
     displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
-    addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,createProjectContent,
-    addContent,displayProjectTodos,addProjectCounter,removeProjectCounter};
+    addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,
+    displayProjectTodos,addProjectCounter,removeProjectCounter};
