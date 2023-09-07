@@ -282,7 +282,9 @@ const addNewTodo = () => {
     const today = document.getElementById('today');
     const week = document.getElementById('week');
     const active = document.querySelectorAll('[data-tab-content]');
+    const inProject = window.document.querySelectorAll('.dynamic-project')
 
+   /* //No need for this code anymore, below loop fixes it!
     //being able to remove from every page
     active.forEach(el=> {
         if(el.classList.contains('active')) {
@@ -294,19 +296,15 @@ const addNewTodo = () => {
                 
             })
         }
-    })
+    }) */
+
     //remove from every page the element
     Divs.forEach(e=> {
-        if (home.contains(e) && e.id===id) {
-            home.removeChild(e);
-        }
-        if (today.contains(e) && e.id===id){
-            today.removeChild(e);
-        }
-
-        if (week.contains(e) && e.id===id){
-            week.removeChild(e);
-        }
+        active.forEach((el,i)=> {
+            if (el.contains(e) && e.id===id) {
+                el.removeChild(e);
+            }
+        })
     }) 
  }
 
@@ -364,6 +362,7 @@ const addNewTodo = () => {
 
     function removeProjectCounter (project, length) {
         const counter = window.document.querySelectorAll('.project-span');
+      //  console.log(`project is ${project}`);
         counter.forEach((e,i)=> {
             if (project==i) 
             {

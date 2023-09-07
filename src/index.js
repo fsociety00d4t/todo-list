@@ -23,13 +23,14 @@ const tabs = document.querySelectorAll('[data-tab-target]');
 
 tabs.forEach(tab => {
     tab.addEventListener('click',()=> {
-        const tabContent = document.querySelectorAll('[data-tab-content]');
-        const target = document.querySelector(tab.dataset.tabTarget);
+        const allTabs = window.document.querySelectorAll('[data-tab-target');
+        const tabContent = window.document.querySelectorAll('[data-tab-content]');
+        const target = window.document.querySelector(tab.dataset.tabTarget);
         tabContent.forEach(tabContent=>tabContent.classList.remove('active'));
 
-        tabs.forEach(tab => {
+        allTabs.forEach(tab => {
             tab.classList.remove('active');
-          //  projects.classList.remove('active');
+        //    projects.classList.remove('active');
         })
         tab.classList.add('active');
         target.classList.add('active');
@@ -38,7 +39,7 @@ tabs.forEach(tab => {
 })
 
 //handle dynamically created projects
-document.addEventListener('click',function(e){
+ /document.addEventListener('click',function(e){
     const target = e.target.closest('.dynamic-project');
     const createdProjects = document.querySelectorAll('[data-tab-target]');
     const createProjectsContent = document.querySelectorAll('[data-tab-content]');
@@ -62,7 +63,7 @@ document.addEventListener('click',function(e){
         addContent();
     }
     
-})
+}) 
 
 //handle newTodo
 const ToDo = document.querySelector('.new-todo');
@@ -101,11 +102,10 @@ document.addEventListener('click',function(e){
 document.addEventListener('click',function(e){
     const target = e.target.closest('.delete');
     if (target) {
-        console.log(`from index target is ${target.parentElement.id}`);
         let id = target.parentElement.id;
-        deleteDisplayTodo(target,id);
-        console.log(`after remove from index target is ${target.parentElement.id}`);
         removeTodo(target.parentElement.id);
+        deleteDisplayTodo(target,id);
+        
         
     }
 })

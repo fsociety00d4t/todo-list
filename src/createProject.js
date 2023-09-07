@@ -27,23 +27,53 @@ const createProject = (value) => {
 
 function removeTodoFromProject (target) {
     let activePage;
+    let flag=0;
     const active = window.document.querySelectorAll('.dynamic-project');
+    const ifInPage = window.document.querySelectorAll('data-tab-content');
     active.forEach((e,i)=> {
         if (e.classList.contains('active')){
             activePage=i; 
         } 
-    }) 
+    })
 
-   projects[activePage].projectsToDos.forEach((e,i)=> {
-        if (target==e.id) 
-        {
-            projects[activePage].projectsToDos.splice(i,1);
-        }
-   })
-   //console.log(`the counter is ${projects[activePage].projectsToDos.length}`);
-  // console.log(`target is ${target}`)
-    removeProjectCounter(activePage, projects[activePage].projectsToDos.length);
-}
+   /* ifInPage.forEach((e,i)=> {
+        if (e.getElementById(target)!=null)
+        console.log('it contains it');
+    }) */
+    if (!activePage && activePage!=0) {
+        projects.forEach((e,i)=> {
+            projects[i].projectsToDos.forEach((el,ind) => {
+             //   console.log(`el is ${el.id}`);
+           //     console.log(`target is ${target}`);
+                if (el.id==target)
+                {
+                    let x= projects[i].projectsToDos.splice(ind,1);
+                    removeProjectCounter(i, projects[i].projectsToDos.length);
+                    console.log(x);
+                    flag=1;
+                }
+            })
+        })
+    }
+    
+
+    
+   if (flag===0) {
+    if (activePage || activePage==0) {
+        projects[activePage].projectsToDos.forEach((e,i)=> {
+            if (target==e.id) 
+            {
+                let y= projects[activePage].projectsToDos.splice(i,1); //FIX THIS
+                console.log(y);
+            }
+       })
+        removeProjectCounter(activePage, projects[activePage].projectsToDos.length);
+
+    }
+   }
+    
+    }
+   
 
 function addTodos(project,toDo) {
     let x = project.toString().charAt(project.length-1);
