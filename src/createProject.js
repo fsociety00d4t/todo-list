@@ -1,6 +1,7 @@
 import {removeProjectCounter} from './displayDOM';
 let projects = [];
 let id = 0;
+let counter=0;
 const createProject = (value) => {
     
 
@@ -65,5 +66,12 @@ function addTodos(project,toDo) {
     return projects[Number(x)].projectsToDos.length;  
 }
 
+function deleteFromProjectArray (target) {
+    projects.forEach((e,i)=> {
+        if (e.id==target)
+        projects.splice(i,1);
+    })
+}
 
-export {createProject,addTodos,removeTodoFromProject};
+
+export {createProject,addTodos,removeTodoFromProject,deleteFromProjectArray};

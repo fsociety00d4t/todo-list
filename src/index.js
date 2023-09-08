@@ -1,7 +1,9 @@
 import {removeTodo} from './createToDo';
-import {displayInput,displayTodoContainer,displayDone,displayBack,deleteDisplayTodo} from './displayDOM';
+import {displayInput,displayTodoContainer,displayDone,
+  displayBack,deleteDisplayTodo,deleteProject} from './displayDOM';
+import {deleteFromProjectArray} from './createProject';
 
-let activePage;
+//handle new project
 const newProject = document.querySelector('.new-project-btn');
 newProject.addEventListener('click',function(){
    displayInput();
@@ -96,4 +98,12 @@ window.document.addEventListener('click',function(e){
   }
 }) 
 
+//handle delete project
+window.document.addEventListener('click',function(e){
+  const target = e.target.closest('.delete-Project');
+  if (target) {
+      deleteFromProjectArray(target.parentElement.id);
+      deleteProject(target.parentElement.id);
+  }
+})
 

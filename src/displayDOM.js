@@ -3,6 +3,7 @@ import {createProject} from './createProject';
 let title = [];
 let divCounter=0;
 let cnt=0;
+let projectCounter=0;
 
 const displayInput = () => {
     const inputDiv = document.querySelector('.new-project-input');
@@ -35,21 +36,30 @@ const displayProjects = () => {
     const main = document.querySelector('.main');
     main.appendChild(div);
    
-    let x = createProject(projectName.value);
-    const list = document.querySelector('.projects');
-    const display = document.createElement('li');
-    const displayBtn = document.createElement('button');
-    const span = document.createElement('span');
-    span.classList.add('project-span');
-    span.innerHTML='0';
-    displayBtn.innerHTML = projectName.value;
-    displayBtn.classList.add('dynamic-project');
-    displayBtn.dataset.tabTarget= `#project${cnt}`;
-    display.appendChild(displayBtn);
-    display.appendChild(span);
-    list.appendChild(display);
- 
-  cnt++;
+    if (projectName.value!='') {
+        createProject(projectName.value);
+        const list = document.querySelector('.projects');
+        const display = document.createElement('li');
+        display.id=projectCounter++;
+        display.classList.add('project-container');
+        const displayBtn = document.createElement('button');
+        const span = document.createElement('span');
+        const deleteProject = document.createElement('img');
+        deleteProject.src='../images/trash-outline.svg';
+        deleteProject.classList.add('delete-Project');
+        span.classList.add('project-span');
+        span.innerHTML='0';
+        displayBtn.innerHTML = projectName.value;
+        displayBtn.classList.add('dynamic-project');
+        displayBtn.dataset.tabTarget= `#project${cnt}`;
+        display.appendChild(displayBtn);
+        display.appendChild(span);
+        display.appendChild(deleteProject);
+        list.appendChild(display);
+    
+    cnt++;
+    }
+    
  
 }
 
@@ -304,6 +314,18 @@ const addNewTodo = () => {
             else
             div.style.backgroundColor='white';
     }
+
+    //delete project display
+    function deleteProject (target) {
+        const containers = window.document.querySelectorAll('.project-container');
+        const list = document.querySelector('.projects');
+        containers.forEach((e,i)=> {
+            if (target==e.id) {
+                
+                list.removeChild(e);
+            }
+        })
+    }
  
 
 
@@ -311,4 +333,4 @@ const addNewTodo = () => {
 export {displayInput,displayProjects,displayTodoContainer,
     displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
     addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,
-    displayProjectTodos,addProjectCounter,removeProjectCounter};
+    displayProjectTodos,addProjectCounter,removeProjectCounter,deleteProject};

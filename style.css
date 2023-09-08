@@ -216,5 +216,14 @@ button:hover{
     cursor: pointer;
 }
 
+.delete-Project {
+    width:10%;
+    height: 10%;
+    cursor: pointer;
+}
 
+.project-container {
+    display: flex;
+    gap:5%;   
+}
 
