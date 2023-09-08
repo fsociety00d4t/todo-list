@@ -84,7 +84,7 @@ document.addEventListener('click',function(e){
     if (target) {
         let id = target.parentElement.id;
         removeTodo(target.parentElement.id);
-        deleteDisplayTodo(target,id);
+        deleteDisplayTodo(id);
         
         
     }
@@ -102,8 +102,11 @@ window.document.addEventListener('click',function(e){
 window.document.addEventListener('click',function(e){
   const target = e.target.closest('.delete-Project');
   if (target) {
+     deleteProject(target.parentElement.id);
       deleteFromProjectArray(target.parentElement.id);
-      deleteProject(target.parentElement.id);
+     // removeTodo(target.parentElement.id);
+      
+      
   }
 })
 

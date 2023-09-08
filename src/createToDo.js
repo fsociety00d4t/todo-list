@@ -35,9 +35,9 @@ function createToDo  (title, date, checkbox) {
     activePage.forEach((e,i)=> {
       if (e.classList.contains('active'))
       {
-       let x =  addTodos (e.id,newToDo);
+       let x =  addTodos (i,newToDo);
         displayProjectTodos(e.id, newToDo);
-        addProjectCounter(e.id.toString().charAt(e.id.length-1), x);
+        addProjectCounter(i,x);
       }
     })
 }
@@ -80,7 +80,7 @@ function addWeek (date,toDo) {
    addWeekCounter(weektoDos.length);
 }
 
-function removeTodo (target) {
+function removeTodo (target,flag) {
   toDos.forEach((e,i)=> {
     if (target==e.id)
       toDos.splice(i,1); 
@@ -101,6 +101,7 @@ function removeTodo (target) {
     
   })
 
+    if (flag!=1) 
   removeTodoFromProject(target);
 
 }

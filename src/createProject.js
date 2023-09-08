@@ -1,4 +1,5 @@
 import {removeProjectCounter} from './displayDOM';
+import {removeTodo} from './createToDo';
 let projects = [];
 let id = 0;
 let counter=0;
@@ -61,16 +62,22 @@ function removeTodoFromProject (target) {
    
 
 function addTodos(project,toDo) {
-    let x = project.toString().charAt(project.length-1);
-    projects[Number(x)].projectsToDos.push(toDo);
-    return projects[Number(x)].projectsToDos.length;  
+    projects[project].projectsToDos.push(toDo);
+    return projects[project].projectsToDos.length;
 }
 
 function deleteFromProjectArray (target) {
     projects.forEach((e,i)=> {
-        if (e.id==target)
+        if (e.id==target) {
+
+        e.projectsToDos.forEach((el,ind)=> {
+         
+            removeTodo (el.id,1);  //HEERE
+        })
+
         projects.splice(i,1);
-    })
+    } })
+
 }
 
 

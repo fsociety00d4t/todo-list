@@ -205,7 +205,7 @@ const addNewTodo = () => {
     })
  }
 
- function deleteDisplayTodo (target,id) {
+ function deleteDisplayTodo (id) {
     const Divs = document.querySelectorAll('.todo-div');
     const active = document.querySelectorAll('[data-tab-content]');
 
@@ -318,11 +318,21 @@ const addNewTodo = () => {
     //delete project display
     function deleteProject (target) {
         const containers = window.document.querySelectorAll('.project-container');
+        const contentContainers = window.document.querySelectorAll('.project-divs');
         const list = document.querySelector('.projects');
+        const main = document.querySelector('.main');
         containers.forEach((e,i)=> {
             if (target==e.id) {
-                
+                let arr=[];
                 list.removeChild(e);
+                const todos = contentContainers[i].children;
+                for (let i=0; i<todos.length;i++) {
+                 arr[i]=todos[i].id;
+                }
+                arr.forEach((e,i)=>{
+                    deleteDisplayTodo(e);
+                })
+                main.removeChild(contentContainers[i]);
             }
         })
     }
