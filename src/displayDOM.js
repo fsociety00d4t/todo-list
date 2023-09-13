@@ -306,13 +306,13 @@ const addNewTodo = () => {
     //handle priority color 
     function getColor (prio,div) {
             if (prio==='high-priority')
-            div.style.backgroundColor= 'red';
+            div.style.backgroundColor= 'rgb(176, 51, 42)';
             else if (prio==='medium-priority')
-            div.style.backgroundColor='orange';
+            div.style.backgroundColor='rgb(224, 177, 94)';
             else if (prio==='low-priority')
-            div.style.backgroundColor='green';
-            else
-            div.style.backgroundColor='white';
+            div.style.backgroundColor='rgba(118, 204, 128, 1)';
+          //  else
+          //  div.style.backgroundColor='white';
     }
 
     //delete project display
@@ -336,6 +336,17 @@ const addNewTodo = () => {
             }
         })
     }
+
+    //create new note
+    function displayNote () {
+        const noteDiv = document.createElement('div');
+        noteDiv.classList.add('note-container');
+        const textArea = document.createElement('div');
+        textArea.contentEditable=true;
+        noteDiv.appendChild(textArea);
+        const notePage = document.querySelector('.note-page');
+        notePage.append(noteDiv);
+    }
  
 
 
@@ -343,4 +354,4 @@ const addNewTodo = () => {
 export {displayInput,displayProjects,displayTodoContainer,
     displayTodo,displayTodaysTodos,displayWeeksTodos,displayDone,displayBack,deleteDisplayTodo,AddHomeCounter,addTodayCounter,
     addWeekCounter,removeHomeCounter,removeTodayCounter,removeWeekCounter,
-    displayProjectTodos,addProjectCounter,removeProjectCounter,deleteProject};
+    displayProjectTodos,addProjectCounter,removeProjectCounter,deleteProject,displayNote};

@@ -1,7 +1,8 @@
 import {removeTodo} from './createToDo';
 import {displayInput,displayTodoContainer,displayDone,
-  displayBack,deleteDisplayTodo,deleteProject} from './displayDOM';
+  displayBack,deleteDisplayTodo,deleteProject,displayNote} from './displayDOM';
 import {deleteFromProjectArray} from './createProject';
+//import {displayNote} from './notes';
 
 //handle new project
 const newProject = document.querySelector('.new-project-btn');
@@ -103,10 +104,21 @@ window.document.addEventListener('click',function(e){
   const target = e.target.closest('.delete-Project');
   if (target) {
      deleteProject(target.parentElement.id);
-      deleteFromProjectArray(target.parentElement.id);
-     // removeTodo(target.parentElement.id);
-      
-      
+      deleteFromProjectArray(target.parentElement.id);    
   }
+})
+
+
+//handle Notes
+/*const notes = document.querySelector('.notes');
+notes.addEventListener('click',function(){
+  //notes.classList.add('active');
+  console.log('hi');
+})  */
+
+const newNote = document.querySelector('.add-note');
+newNote.addEventListener('click', function(e){
+ // createNote();
+ displayNote();
 })
 

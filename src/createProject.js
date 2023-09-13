@@ -2,7 +2,6 @@ import {removeProjectCounter} from './displayDOM';
 import {removeTodo} from './createToDo';
 let projects = [];
 let id = 0;
-let counter=0;
 const createProject = (value) => {
     
 
@@ -14,6 +13,9 @@ const createProject = (value) => {
     
             const project = new Projects(value);
             projects.push(project);
+
+            localStorage.setItem("project", JSON.stringify(project));
+            let storedProjects = JSON.parse(localStorage.getItem("project"));
  
 }
 
@@ -72,7 +74,7 @@ function deleteFromProjectArray (target) {
 
         e.projectsToDos.forEach((el,ind)=> {
          
-            removeTodo (el.id,1);  //HEERE
+            removeTodo (el.id,1);  
         })
 
         projects.splice(i,1);
